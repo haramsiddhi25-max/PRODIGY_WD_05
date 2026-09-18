@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weatherly | Weather Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background decoration -->
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+
+    <main class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="brand">
+                <div class="brand-icon">☁️</div>
+
+                <div>
+                    <h1>Weatherly</h1>
+                    <p>Simple weather. Clear information.</p>
+                </div>
+            </div>
+
+            <div class="header-badge">
+                <span class="status-dot"></span>
+                Live Weather
+            </div>
+
+        </header>
+
+
+        <!-- SEARCH SECTION -->
+        <section class="search-section">
+
+            <div class="search-box">
+
+                <span class="search-icon">⌕</span>
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Search for a city..."
+                    autocomplete="off"
+                >
+
+                <button id="searchBtn">
+                    Search
+                </button>
+
+            </div>
+
+            <button id="locationBtn" class="location-btn">
+                📍 Use My Location
+            </button>
+
+        </section>
+
+
+        <!-- ERROR MESSAGE -->
+        <div id="errorMessage" class="error-message hidden">
+            <span>⚠️</span>
+            <p id="errorText">Unable to find the location.</p>
+        </div>
+
+
+        <!-- LOADING -->
+        <div id="loading" class="loading hidden">
+            <div class="loader"></div>
+            <p>Fetching weather information...</p>
+        </div>
+
+
+        <!-- WEATHER CONTENT -->
+        <section id="weatherContent" class="hidden">
+
+            <!-- CURRENT WEATHER -->
+            <section class="current-weather card">
+
+                <div class="location-info">
+
+                    <div>
+                        <p class="small-label">CURRENT WEATHER</p>
+
+                        <h2 id="locationName">
+                            Mumbai
+                        </h2>
+
+                        <p id="locationDetails">
+                            Maharashtra, India
+                        </p>
+                    </div>
+
+                    <div class="date-info">
+                        <p id="currentDate">Today</p>
+                        <p id="currentTime">--:--</p>
+                    </div>
+
+                </div>
+
+
+                <div class="main-weather">
+
+                    <div class="weather-icon-wrapper">
+                        <span id="weatherIcon">☀️</span>
+                    </div>
+
+                    <div class="temperature">
+                        <span id="temperature">--</span>
+                        <sup>°C</sup>
+                    </div>
+
+                    <div class="condition">
+                        <h3 id="weatherCondition">
+                            Clear Sky
+                        </h3>
+
+                        <p>
+                            Feels like
+                            <strong>
+                                <span id="feelsLike">--</span>°C
+                            </strong>
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- WEATHER DETAILS -->
+                <div class="weather-details">
+
+                    <div class="detail-item">
+                        <div class="detail-icon">💧</div>
+
+                        <div>
+                            <span>Humidity</span>
+                            <strong>
+                                <span id="humidity">--</span>%
+                            </strong>
+                        </div>
+                    </div>
+
+
+                    <div class="detail-item">
+                        <div class="detail-icon">💨</div>
+
+                        <div>
+                            <span>Wind Speed</span>
+                            <strong>
+                                <span id="windSpeed">--</span> km/h
+                            </strong>
+                        </div>
+                    </div>
+
+
+                    <div class="detail-item">
+                        <div class="detail-icon">🌡️</div>
+
+                        <div>
+                            <span>Pressure</span>
+                            <strong>
+                                <span id="pressure">--</span> hPa
+                            </strong>
+                        </div>
+                    </div>
+
+
+                    <div class="detail-item">
+                        <div class="detail-icon">☁️</div>
+
+                        <div>
+                            <span>Cloud Cover</span>
+                            <strong>
+                                <span id="cloudCover">--</span>%
+                            </strong>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SUN INFORMATION -->
+            <section class="sun-section">
+
+                <div class="sun-card">
+                    <div class="sun-icon">🌅</div>
+
+                    <div>
+                        <span>Sunrise</span>
+                        <strong id="sunrise">--:--</strong>
+                    </div>
+                </div>
+
+
+                <div class="sun-card">
+                    <div class="sun-icon">🌇</div>
+
+                    <div>
+                        <span>Sunset</span>
+                        <strong id="sunset">--:--</strong>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- FORECAST -->
+            <section class="forecast-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="small-label">UPCOMING WEATHER</p>
+                        <h2>5-Day Forecast</h2>
+                    </div>
+
+                    <span class="forecast-note">
+                        Daily outlook
+                    </span>
+
+                </div>
+
+
+                <div id="forecastContainer" class="forecast-container">
+
+                    <!-- Forecast cards generated using JavaScript -->
+
+                </div>
+
+            </section>
+
+
+            <!-- API / PROJECT INFO -->
+            <section class="info-section card">
+
+                <div class="info-icon">
+                    ⚡
+                </div>
+
+                <div>
+                    <h3>Live Weather Data</h3>
+
+                    <p>
+                        Weather information is fetched dynamically using
+                        weather and geocoding APIs based on the selected
+                        location.
+                    </p>
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- EMPTY STATE -->
+        <section id="emptyState" class="empty-state">
+
+            <div class="empty-icon">
+                🌤️
+            </div>
+
+            <h2>Check the weather anywhere</h2>
+
+            <p>
+                Search for a city or allow location access to see
+                current weather conditions and the 5-day forecast.
+            </p>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <p>
+                Designed & Developed by
+                <strong>Siddhi Rohidas Haram</strong>
+            </p>
+
+            <span>Task 05 • Web Development Internship</span>
+
+        </footer>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
